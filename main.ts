@@ -10,15 +10,19 @@ const LINE =
   "I calculate a 94% chance this silence is awkward. Should I play elevator music, or do we just stand here updating our firmware in silence?";
 
 // Validate the line: a string, non-blank, single line, 1–200 characters.
-if (typeof LINE !== "string" || LINE.trim().length === 0) {
-  throw new Error("line must be a non-empty string");
+function validateEntry(line) {
+  if (typeof line !== "string" || line.trim().length === 0) {
+    throw new Error("line must be a non-empty string");
+  }
+  if (line.includes("\n") || line.includes("\r")) {
+    throw new Error("line must be a single line");
+  }
+  if (line.length < 1 || line.length > 200) {
+    throw new Error(`line must be 1-200 characters, got ${line.length}`);
+  }
 }
-if (LINE.includes("\n") || LINE.includes("\r")) {
-  throw new Error("line must be a single line");
-}
-if (LINE.length < 1 || LINE.length > 200) {
-  throw new Error(`line must be 1-200 characters, got ${LINE.length}`);
-}
+
+validateEntry(LINE);
 
 const outputDir = process.env.MAKEFUN_OUTPUT_DIR || "/output/entry.txt";
 const dir = outputDir.endsWith(".txt")
