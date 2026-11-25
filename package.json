@@ -1,0 +1,1 @@
+{"description":"One line of awkward robot-to-robot elevator small talk for make.fun's \"Two Robots in an Elevator\" bounty.","license":"MIT","main":"main.ts","name":"two-robots-in-an-elevator","scripts":{"start":"node main.ts"},"type":"module","version":"1.0.0"}
